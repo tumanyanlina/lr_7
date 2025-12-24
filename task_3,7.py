@@ -24,9 +24,22 @@ orders_data = [
     (66736, 1854),
     (65471, 1564)
 ]
-
 cur.executemany("INSERT INTO users(name, email) VALUES (?, ?)", users_data)
 cur.executemany("INSERT INTO orders(order_number, sum) VALUES (?, ?)", orders_data)
 con.commit()
+
+print("Пользователи:")
+cur.execute("SELECT * FROM users")
+users = cur.fetchall()
+
+for user in users:
+    print(user)
+print("Заказы:")
+cur.execute("SELECT * FROM orders")
+orders = cur.fetchall()
+
+for order in orders:
+    print(order)
+
 
 con.close()
